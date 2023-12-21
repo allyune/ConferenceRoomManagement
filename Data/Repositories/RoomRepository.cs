@@ -20,7 +20,10 @@ namespace Data.Repositories
 
         public Room? GetRoom(int id)
         {
-            return _dbContext.Rooms.Where(r => r.Id == id).FirstOrDefault();
+            return _dbContext.Rooms
+                .Include(r => r.Bookings)
+                .Where(r => r.Id == id)
+                .FirstOrDefault();
         }
 
         public List<Room> ListAll()

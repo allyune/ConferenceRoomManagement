@@ -30,7 +30,7 @@ namespace ConferenceRoomBooking.Controllers
 
         public IActionResult RoomInfo(int id)
         {
-            var room = _roomRepository.GetRoom(id);
+            var room = _mapper.Map<ConferenceRoom>(_roomRepository.GetRoom(id));
             return View(room);
         }
 
