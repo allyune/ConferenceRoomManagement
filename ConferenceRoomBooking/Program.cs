@@ -2,6 +2,7 @@ using Data.Interfaces;
 using Data.Repositories;
 using Data;
 using Microsoft.EntityFrameworkCore;
+using AutoMapper;
 
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
@@ -11,7 +12,9 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddTransient<IRoomRepository, RoomRepository>();
+builder.Services
+    .AddTransient<IRoomRepository, RoomRepository>()
+    .AddAutoMapper(typeof(AutoMapperProfile));
 
 var app = builder.Build();
 
