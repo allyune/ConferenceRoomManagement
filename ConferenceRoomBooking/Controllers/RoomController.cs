@@ -23,7 +23,18 @@ namespace ConferenceRoomBooking.Controllers
 
         public IActionResult ListAllRooms()
         {
-            var allRooms = _roomRepository.ListAll();
+            // var allRooms = _roomRepository.ListAll();
+            var allRooms = new List<Room>()
+            { new Room() {Id = 1, Code = "IC22", MaximumCapacity = 5} };
+            var roomModels = allRooms.Select(room => _mapper.Map<ConferenceRoom>(room)).ToList();
+            return View(roomModels);
+        }
+
+        public IActionResult FindRoomByCapacity()
+        {
+            // var allRooms = _roomRepository.ListAll();
+            var allRooms = new List<Room>()
+            { new Room() {Id = 1, Code = "IC22", MaximumCapacity = 5} };
             var roomModels = allRooms.Select(room => _mapper.Map<ConferenceRoom>(room)).ToList();
             return View(roomModels);
         }

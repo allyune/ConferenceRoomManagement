@@ -1,0 +1,44 @@
+﻿@model IEnumerable<ConferenceRoom>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="container mt-4">
+    <h4>Find a Room</h4>
+
+    @using (Html.BeginForm("FindRoomByCapacity", "Room", FormMethod.Get))
+    {
+        <div class="row mt-4">
+            <div class="col-md-3">
+                <label for="maxCapacity">Select Maximum Capacity:</label>
+                <select id="maxCapacity" name="maxCapacity" class="form-control">
+                    @for (int i = 1; i <= 10; i++)
+                    {
+                        <option value="@i">@i</option>
+                    }
+                </select>
+            </div>
+            <div class="col-md-3">
+                <button type="submit" class="btn btn-primary mt-2">Find Room</button>
+            </div>
+        </div>
+    }
+
+    <div class="row mt-4" id="cards-container">
+        @if (Model.Any())
+        {
+            @foreach (var room in Model)
+            {
+                <div class="col-md-4 mb-3">
+                    @await Html.PartialAsync("_RoomCardPartial", room)
+                </div>
+            }
+        }
+        else
+        {
+            <div class="col">
+                <p>No rooms are available at the moment.</p>
+            </div>
+        }
+    </div>
+</div>
