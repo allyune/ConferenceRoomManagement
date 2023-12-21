@@ -27,4 +27,12 @@ public class BookingsController : Controller
         var booking = _mapper.Map<Booking>(_bookingRepository.Get(code));
         return View(booking);
     }
+
+    [HttpPost]
+    public IActionResult Create(Booking booking)
+    {
+        var bookingModel = _mapper.Map<Data.Models.Booking>(booking);
+        var bookingCode = _bookingRepository.Create(bookingModel);
+        return (RedirectToAction("Details", new { code = bookingCode }));
+    }
 }

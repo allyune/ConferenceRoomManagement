@@ -12,6 +12,11 @@ public class BookingRepository : IBookingRepository
         _applicationDbContext = applicationDbContext;
     }
 
+    public string? Create(Booking booking)
+    {
+        throw new NotImplementedException();
+    }
+
     public Booking? Get(string code)
     {
         return _applicationDbContext.Bookings.SingleOrDefault(b => b.Code == code);

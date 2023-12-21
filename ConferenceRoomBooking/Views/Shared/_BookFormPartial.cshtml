@@ -5,7 +5,7 @@
 @{
 }
 
-<form method="post" id="BookForm">
+<form method="post" id="BookForm" asp-controller="Bookings" asp-action="Create">
     <input type="date" hidden asp-for="StartDate" id="formStart" />
     <input type="date" hidden asp-for="EndDate" id="formEnd" />
     <input hidden asp-for="RoomId" id="PropertyId" value="@Model.RoomId" />
