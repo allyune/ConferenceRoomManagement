@@ -2,6 +2,7 @@
 using ConferenceRoomBooking.Models;
 using Data.Interfaces;
 using Data.Models;
+using ConferenceRoomBooking.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -21,22 +22,22 @@ namespace ConferenceRoomBooking.Controllers
             _mapper = mapper;
         }
 
-        public IActionResult ListAllRooms()
+        public IActionResult ListAllRooms(int? maxCapacity)
         {
-            // var allRooms = _roomRepository.ListAll();
-            var allRooms = new List<Room>()
-            { new Room() {Id = 1, Code = "IC22", MaximumCapacity = 5} };
-            var roomModels = allRooms.Select(room => _mapper.Map<ConferenceRoom>(room)).ToList();
-            return View(roomModels);
-        }
+            var allRooms = _roomRepository.ListAll();
 
-        public IActionResult FindRoomByCapacity()
-        {
-            // var allRooms = _roomRepository.ListAll();
-            var allRooms = new List<Room>()
-            { new Room() {Id = 1, Code = "IC22", MaximumCapacity = 5} };
-            var roomModels = allRooms.Select(room => _mapper.Map<ConferenceRoom>(room)).ToList();
-            return View(roomModels);
+            if (maxCapacity is not null && maxCapacity > 0)
+            {
+                var roomsSuitableCapacity = allRooms.Where(room => room.MaximumCapacity >= maxCapacity).ToList();
+                var roomModels = roomsSuitableCapacity.Select(room => _mapper.Map<ConferenceRoom>(room)).ToList();
+                return View(new RoomListingViewModel() { ConferenceRooms = roomModels });
+            }
+            else
+            {
+                var roomModels = allRooms.Select(room => _mapper.Map<ConferenceRoom>(room)).ToList();
+                return View(new RoomListingViewModel() { ConferenceRooms = roomModels });
+            }
+            
         }
 
         public IActionResult RoomInfo(int id)
