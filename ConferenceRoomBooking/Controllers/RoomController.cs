@@ -1,24 +1,28 @@
 ﻿using ConferenceRoomBooking.Models;
+using Data.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
 namespace ConferenceRoomBooking.Controllers
 {
-    public class HomeController : Controller
+    public class RoomController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly ILogger<RoomController> _logger;
+        private readonly IRoomRepository _roomRepository;
 
-        public HomeController(ILogger<HomeController> logger)
+        public RoomController(
+            ILogger<RoomController> logger, IRoomRepository repository)
         {
             _logger = logger;
+            _roomRepository = repository;
         }
 
-        public IActionResult Index()
+        public IActionResult ListAllRooms()
         {
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult RoomInfo()
         {
             return View();
         }
