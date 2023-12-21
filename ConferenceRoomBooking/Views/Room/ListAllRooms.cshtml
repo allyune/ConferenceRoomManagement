@@ -1,0 +1,43 @@
+﻿@model ConferenceRoomBooking.ViewModels.RoomListingViewModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="container mt-4">
+    <h4>Find a Room</h4>
+
+    @using (Html.BeginForm("ListAllRooms", "Room", FormMethod.Get))
+    {
+    <div class="row mt-4">
+        <div class="col-md-3">
+            <label for="maxCapacity">Select Minimum Capacity:</label>
+            <select id="maxCapacity" name="maxCapacity" class="form-control">
+                @for (int i = 1; i <= 10; i++)
+                {
+                    <option value="@i">@i</option>
+                }
+            </select>
+            <br \>
+            <button type="submit" class="btn btn-primary">Find Room</button>
+        </div>
+    </div>
+}
+
+    <div class="row mt-4" id="cards-container">
+        @if (Model.ConferenceRooms.Any())
+        {
+            @foreach (var room in Model.ConferenceRooms)
+            {
+                <div class="col-md-4 mb-3">
+                    @await Html.PartialAsync("_RoomCardPartial", room)
+                </div>
+            }
+        }
+        else
+        {
+            <div class="col">
+                <p>No rooms are available at the moment.</p>
+            </div>
+        }
+    </div>
+</div>
