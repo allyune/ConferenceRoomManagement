@@ -1,4 +1,6 @@
-﻿using Data.Interfaces;
+﻿using AutoMapper;
+using ConferenceRoomBooking.Models;
+using Data.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ConferenceRoomBooking.Controllers;
@@ -6,10 +8,12 @@ namespace ConferenceRoomBooking.Controllers;
 public class BookingsController : Controller
 {
     private readonly IBookingRepository _bookingRepository;
+    private readonly IMapper _mapper;
 
-    public BookingsController(IBookingRepository bookingRepository)
+    public BookingsController(IBookingRepository bookingRepository, IMapper mapper)
     {
         _bookingRepository = bookingRepository;
+        _mapper = mapper;
     }
 
     [HttpGet]
@@ -20,6 +24,7 @@ public class BookingsController : Controller
             return View();
         }
 
-        return View(_bookingRepository.Get(code));
+        var booking = _mapper.Map<Booking>(_bookingRepository.Get(code));
+        return View(booking);
     }
 }
