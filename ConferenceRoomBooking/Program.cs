@@ -15,6 +15,7 @@ builder.Services.AddControllersWithViews();
 builder.Services
     .AddDbContext<ApplicationDbContext>()
     .AddTransient<IRoomRepository, RoomRepository>()
+    .AddTransient<IBookingRepository, BookingRepository>()
     .AddAutoMapper(typeof(AutoMapperProfile));
 
 var app = builder.Build();
@@ -47,5 +48,9 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Room}/{action=ListAllRooms}");
+
+app.MapControllerRoute(
+    name: "bookingDetails",
+    pattern: "{controller=Bookings}/{action=Details}");
 
 app.Run();

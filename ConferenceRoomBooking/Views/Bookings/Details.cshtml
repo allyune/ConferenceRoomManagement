@@ -1,0 +1,25 @@
+﻿@model ConferenceRoomBooking.Models.Booking?
+
+<form method="get">
+    <div class="booking-search-form">
+        <div class="booking-search-form-item">
+            <div class="booking-search-form-item-item">Code</div>
+            <input class="booking-search-form-item-item" type="datetime" name="code" value="@(Model?.Code ?? "")" />
+        </div>
+        <button type="submit" class="btn btn-primary">Search</button>
+    </div>
+</form>
+
+@if (Model is not null)
+{
+    <div class="booking">
+        <div class="booking-item">Id: @Model.Id</div>
+        <div class="booking-item">Code: @Model.Code</div>
+        <div class="booking-item">Number of People: @Model.NumberOfPeople</div>
+        <div class="booking-item">Is Confirmed: @Model.IsConfirmed</div>
+        <div class="booking-item">Start Date: @Model.StartDate</div>
+        <div class="booking-item">End Date: @Model.EndDate</div>
+        <div class="booking-item">Is Deleted@Model.IsDeleted</div>
+        <div class="booking-item">Room Id: @Model.RoomId</div>
+    </div>
+}
