@@ -1,0 +1,14 @@
+﻿@model ConferenceRoom
+
+<div class="card mb-4">
+    <img src="https://placehold.it/300x200" class="card-img-top" alt="Room Image">
+    <div class="card-body">
+        <h5 class="card-title">@Model.Code</h5>
+        <ul class="list-unstyled">
+            <li><strong>Capacity:</strong> @Model.MaximumCapacity</li>
+        </ul>
+    </div>
+    <div class="card-footer">
+        <a asp-controller="RoomController" asp-action="RoomInfo" asp-route-id=@Model.Id class="btn btn-info">See Details</a>
+    </div>
+</div>
