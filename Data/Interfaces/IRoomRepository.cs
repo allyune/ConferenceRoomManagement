@@ -10,5 +10,6 @@ namespace Data.Interfaces
     public interface IRoomRepository
     {
         public List<Room> ListAll();
+        public Room GetRoom(int id);
     }
 }

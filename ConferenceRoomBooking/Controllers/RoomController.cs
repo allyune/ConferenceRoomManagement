@@ -40,10 +40,10 @@ namespace ConferenceRoomBooking.Controllers
             
         }
 
-        public IActionResult RoomInfo()
+        public IActionResult RoomInfo(int id)
         {
-
-            return View();
+            var room = _mapper.Map<ConferenceRoom>(_roomRepository.GetRoom(id));
+            return View(room);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

@@ -18,6 +18,14 @@ namespace Data.Repositories
             _dbContext = applicationDbContext;
         }
 
+        public Room? GetRoom(int id)
+        {
+            return _dbContext.Rooms
+                .Include(r => r.Bookings)
+                .Where(r => r.Id == id)
+                .FirstOrDefault();
+        }
+
         public List<Room> ListAll()
         {
             return _dbContext.Rooms.ToList();
