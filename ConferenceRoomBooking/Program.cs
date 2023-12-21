@@ -1,3 +1,5 @@
+using Data.Interfaces;
+using Data.Repositories;
 using Data;
 using Microsoft.EntityFrameworkCore;
 
@@ -9,6 +11,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddTransient<IRoomRepository, RoomRepository>();
 
 var app = builder.Build();
 
@@ -29,6 +32,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Room}/{action=ListAllRooms}");
 
 app.Run();
