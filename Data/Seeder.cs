@@ -9,6 +9,10 @@ namespace Data
             context.Rooms.AddRange(rooms);
             context.SaveChanges();
             context.Bookings.AddRange(bookings);
+            foreach(var booking in bookings)
+            {
+                booking.Code = CodeGenerator(DateTime.Today, booking.StartDate, booking.EndDate, booking.Room.Code);
+            }
             context.SaveChanges();
         }
 
@@ -70,7 +74,7 @@ namespace Data
             {
                 Code = "",
                 NumberOfPeople = 1,
-                IsConfirmed = false,
+                IsConfirmed = false,    
                 Room = rooms[0],
                 StartDate = new DateTime(2024, 1, 15),
                 EndDate = new DateTime(2024, 1, 18),
@@ -107,5 +111,15 @@ namespace Data
                 IsDeleted = false,
             },
         };
+
+        internal static string CodeGenerator(DateTime date, DateTime startDate, DateTime endDate, string roomId)
+        {
+            string formatDate = date.ToString("yyyyMMdd");
+            string formatStartDate = date.ToString("hhmm");
+            string formatEndDate = date.ToString("hhmm");
+
+            string code = $"{formatDate}-{formatStartDate}-{formatEndDate}-{roomId}";
+            return code;
+        }
     }
 }
