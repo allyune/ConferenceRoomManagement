@@ -1,0 +1,24 @@
+﻿@model ConferenceRoomBooking.Models.ConferenceRoom
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<h2>Room details</h2>
+<p>Code: @Model.Code</p>
+<p>Persons count: @Model.MaximumCapacity</p>
+<input type="text" id="dateRangePicker">
+@if (Model.Bookings is not null)
+{
+    @for (int i = 0; i < Model.Bookings.Count; i++)
+    {
+        <p hidden id="start/@i">@Model.Bookings[i].StartDate.ToString("yyyy'-'MM'-'dd")</p>
+        <p hidden id="end/@i">@Model.Bookings[i].EndDate.ToString("yyyy'-'MM'-'dd")</p>
+    }
+}
+
+
+@section scripts {
+    <script src="~/js/calendar.js"></script>
+}
