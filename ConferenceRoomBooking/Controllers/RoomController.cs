@@ -19,7 +19,7 @@ namespace ConferenceRoomBooking.Controllers
 
         public IActionResult ListAllRooms()
         {
-            var allRooms = _roomRepository.ListAllRooms();
+            var allRooms = _roomRepository.ListAll();
             return View(allRooms);
         }
 
