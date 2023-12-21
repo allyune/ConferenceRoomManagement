@@ -1,0 +1,17 @@
+﻿@model ConferenceRoomBooking.Models.Booking
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<form method="post" id="BookForm">
+    <input type="date" hidden asp-for="StartDate" id="formStart" />
+    <input type="date" hidden asp-for="EndDate" id="formEnd" />
+    <input hidden asp-for="RoomId" id="PropertyId" value="@Model.RoomId" />
+    <div class="mb-3">
+        <label class="form-label" hidden id="peopleCount" for="exampleCheck1">Choose amount of people</label>
+        <input class="form-control w-50" asp-for="NumberOfPeople" id="NumberOfPeople" hidden max="@Model.MaximumCapacity"/>
+    </div>
+    <button class="btn btn-primary" hidden id="submitButton">Submit</button>
+</form>

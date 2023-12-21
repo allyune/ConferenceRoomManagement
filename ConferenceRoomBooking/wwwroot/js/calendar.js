@@ -55,8 +55,8 @@
         $("#formStart").val(startDate);
         $("#formEnd").val(endDate);
         $("#submitButton").removeAttr('hidden');
-        $("#BillingAddress").removeAttr('hidden');
-        $("#BillingAddressLabel").removeAttr('hidden');
+        $("#NumberOfPeople").removeAttr('hidden');
+        $("#peopleCount").removeAttr('hidden');
         $("#dateRangePicker").remove();
     });
 });
