@@ -37,6 +37,10 @@
     $('#dateRangePicker').daterangepicker({
         startDate: moment().add(1, 'days'),
         endDate: moment().add(2, 'days'),
+        timePicker: true,
+        locale: {
+            format: 'MM/DD/YYYY h:mm A'
+        },
         isInvalidDate: function (date) {
             var blockedDates = getBlockedDatesUntilToday();
             var bookedDates = getBookedDated();
