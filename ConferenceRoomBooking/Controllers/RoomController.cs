@@ -23,9 +23,10 @@ namespace ConferenceRoomBooking.Controllers
             return View(allRooms);
         }
 
-        public IActionResult RoomInfo()
+        public IActionResult RoomInfo(int id)
         {
-            return View();
+            var room = _roomRepository.GetRoom(id);
+            return View(room);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
