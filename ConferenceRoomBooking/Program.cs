@@ -12,6 +12,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddTransient<IRoomRepository, RoomRepository>();
+builder.Services.AddTransient<IBookingRepository, BookingRepository>();
 
 var app = builder.Build();
 
@@ -33,5 +34,9 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Room}/{action=ListAllRooms}");
+
+app.MapControllerRoute(
+    name: "bookingDetails",
+    pattern: "{controller=Bookings}/{action=Details}");
 
 app.Run();

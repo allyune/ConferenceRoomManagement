@@ -1,0 +1,38 @@
+﻿.booking-search-form {
+    margin: 5px;
+    border: solid;
+    border-radius: 6px;
+    border-color: lightblue;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.booking-search-form-item {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.booking-search-form-item-item {
+    margin: 5px;
+}
+
+.booking {
+    display: flex;
+    flex-direction: column;
+    margin: 5px;
+    border: solid;
+    border-radius: 6px;
+    border-color: lightgrey;
+}
+
+.booking-item {
+    margin: 5px;
+    padding: 5px;
+    border: solid;
+    border-radius: 6px;
+    border-color: lightcoral;
+}
